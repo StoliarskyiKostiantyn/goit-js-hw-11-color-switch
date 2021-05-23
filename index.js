@@ -14,28 +14,32 @@ const colors = [
   "#795548",
 ];
 
-const getNumber = randomIntegerFromInterval(0, 5);
+let getNumber;
 const chooseColor = (colors, getNumber) => {
   bodeEl.style.backgroundColor = colors[getNumber];
 };
-// chooseColor(colors, getNumber);
-
 buttons.forEach((button) => {
   button.addEventListener("click", onBtnClick);
 });
 let intervalId = null;
 let isActive = false;
-function onBtnClick(ev) {
-  const { action } = ev.currentTarget.dataset;
+function onBtnClick(event) {
+  const { action } = event.currentTarget.dataset;
   switch (action) {
     case "start":
       if (isActive) {
+        console.log("a a");
         return;
       } else {
         isActive = true;
-        intervalId = setInterval(chooseColor, 1000, 1000);
+        intervalId = setInterval(() => {
+          getNumber = randomIntegerFromInterval(0, 5);
+          chooseColor(colors, getNumber);
+        }, 1000);
       }
+      break;
     case "stop":
+      console.log("q q");
       clearInterval(intervalId);
       isActive = false;
   }
