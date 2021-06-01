@@ -33,7 +33,7 @@ function onBtnClick(event) {
       } else {
         isActive = true;
         intervalId = setInterval(() => {
-          getNumber = randomIntegerFromInterval(0, 5);
+          getNumber = randomIntegerFromInterval(0, colors.length - 1);
           chooseColor(colors, getNumber);
         }, 1000);
       }
